@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button>1</button>
+<button>2</button><button>3</button><button>4</button>
+
+
+<script>
+    //问题1:作用域(Scopt)
+   /* (function(){
+        var a = b = 5;
+    })();
+    console.log(b);//5
+    这个问题的陷阱就是,在立即执行函数表达式(IIFE)中,有两个赋值,但是其中变量a使用关键字var来声明.这就意味着a是这个函数的局部变量.
+    于此相反,b被分配给了全局作用域(也就是全局变量).
+    这个问题的另一个陷阱就是,在函数中每一使用"严格模式"('use strict';).如果严格模式开启,那么代码就会报错" Uncaught ReferenceError:
+    b is not defined".请记住,如果这是预期的行为,严格模式要求你显示地引用全局作用域.所以,你需要想下面这么写:
+
+    (function(){
+        'use strict';
+        var a = b = 5;
+    })();
+    console.log(b);// Uncaught ReferenceError: b is not defined
+    */
+    (function(){
+        'use strict';
+        var a = window.b = 5;
+    })();
+    console.log(b);//5
+
+    //问题2:创建"原生(native)"方法
+    /*
+    在String对象上定义一个repeatify函数.这个行数接受一个整数参数,来明确字符串需要重复几次.这个函数要求字符串重复指定的次数.
+    console.log('hello'.repeatify(3));
+    */
+    String.prototype.repeatify = String.prototype.repeatify||function(times){
+                var str = '';
+                for(var i=0;i<times;i++){
+                    str += this;
+                }
+                return str;
+            };
+    console.log('hello'.repeatify(3));//hellohellohello
+    /*
+    这个问题测试了开发人员对JavaScript中继承及原型(prototype)属性的知识.这也验证了开发人员是否有能力扩展原生数据类型功能(虽然不应该
+    这么做).
+    在这里,另一个关键点是,看你咋样避免重写可能已定义了的方法.者可以通过在定义自己方法之前,检查方法是否存在.
+    String.prototype.repeatify = String.prototype.repeatify||function(times){code here};
+    当你被问起去扩展一个JavaScript方法时,这个技术非常有用.
+    */
+
+    //问题3:变量提升(Hoisting)
+    function test(){
+        console.log(a);
+        console.log(foo());
+
+        var a = 1;
+        function foo(){
+            return 2;
+        }
+    }
+    test();
+    //undefined
+    //2
+    /*
+    这个结果的原因是,变量和函数都被提升(hoisted)到了函数体的顶部.因此,当打印变量a时,它虽存在于函数体(因为a已经被声明),但任然是undefined.
+    换言之,上面的代码等同于下面的代码
+    function test(){
+        var a;
+        function foo(){
+            return 2;
+        }
+        console.log(a);
+        console.log(foo());
+        a = 1;
+    }
+    test();
+    */
+
+    //问题4:在JavaScript中,'this'是如何工作的
+    var fullname = 'John Doe';
+    var obj = {
+        fullname : 'Colin Thrig',
+            prop : {
+                fullname : 'Aurelio De Rosa',
+                getFullname:function(){
+                    return this.fullname;
+                }
+    }
+    };
+    console.log(obj.prop.getFullname());//Aurelio De Rosa
+    var test = obj.prop.getFullname;
+    console.log(test());//John Doe
+    /*
+    原因是,JavaScript中关键字this所引用的是函数上下文,取决于函数是如何调用的,而不是怎么被定义的.
+    在第一个console.log(),getFullname()是作为obj.prop对象的行数被调用.因此,当前的上下文指代后者,并且函数返回这个对象的fullname属性.
+    相反,当getFullname()被赋值给test变量是,当前的上下文是全局对象window,这是因为test被隐试地作为全局对象的属性.
+    基于这一点,函数返回window的fullname,在本例中即为第一行代码设置的.
+     */
+
+    //问题5:call()和apply()
+    //修复前一个问题,让最后一个console.log()打印输出Aurelio De Rosa.
+    /*
+    这个问题可以通过运用call()或者apply()方法强制转换上下文环境.如果你不了解这两个方法他们的区别,我建议你看看这篇文章
+    function.call和function.apply之间有和区别?.下面的代码中,我用来call(),但apply()也能产生同样的结果:
+     */
+    console.log(test.call(obj.prop));
+
+    //问题6:闭包(Closures)
+    var nodes = document.getElementsByTagName('button');
+    for(var i=0; i<nodes.length; i++){
+        nodes[i].addEventListener('click',function(){
+            console.log('You clicked element #'+i);
+        });
+    }
+    //请问,如果用户点击第一个和第四个按钮的时候,控制台分别打印的结果是什么?为什么?
+    //You clicked element #NODES_LENGTH
+    //You clicked element #NODES_LENGTH
+   /*
+    也就是说，代码打印两次You clicked element #NODES_LENGTH，其中NODES_LENGTH是nodes的结点个数。
+    原因是在for循环完成后，变量i的值等于节点列表的长度。此外，因为i在代码添加处理程序的作用域中，该变量属于处理程序的闭包。
+    你会记得，闭包中的变量的值不是静态的，因此i的值不是添加处理程序时的值（对于列表来说，第一个按钮为0，对于第二个按钮为1，依此类推）。
+    在处理程序将被执行的时候，在控制台上将打印变量i的当前值，等于节点列表的长度。
+*/
+
+    //问题7:闭包(Closures)
+    /*修复上题的问题,使得点击第一个按钮是输出0,点击第二个按钮输出1,依次类推.
+     第一个解决方案使用立即执行函数表达式(IIFE)在创建一个闭包,从而得到所期望的i的值.实现此方法代码如下
+     */
+    var nodes = document.getElementsByTagName('button');
+    for(var i=0; i<nodes.length; i++){
+        nodes[i].addEventListener('click',(function(i){
+            return function(){
+                console.log('You clicked element #'+i);
+            }
+        })(i));
+    }
+    //另一个方案不使用IIFE,而是将函数移动循环的外面.这种方法由下面的代码实现
+    function handlerWrapper(i){
+        return function(){
+            console.log('You clicked element #'+i);
+        }
+    }
+    var nodes = document.getElementsByTagName('button');
+    for(var i=0; i<nodes.length; i++){
+        nodes[i].addEventListener('click',handlerWrapper(i));
+    }
+
+    //问题8:数据类型
+    console.log(typeof null);//object
+    console.log(typeof {});//object
+    console.log(typeof []);//object
+    console.log(typeof undefined);//undefined
+
+    //问题9:事件循环
+    function printing(){
+        console.log(1);
+        setTimeout(function(){
+            console.log(2);
+        },1000);
+        setTimeout(function(){
+            console.log(3);
+        },0);
+        console.log(4);
+    }
+    printing();
+    //1
+    //4
+    //3
+    //2
+    /*
+    想知道为什么输出循序是这样的,你需要弄了解setTimeout()做了什么,已经浏览器的事件循环原理.浏览器有一个事件循环用于检查事件队列,
+    处理延迟的事件.UI事件(例如,点击,滚动等),Ajax回调,以及提供给setTimeout()和setInterval()的回调都会依次被事件循环处理.
+    因此,当调用setTimeout()函数时,即时延迟的时间被设置为0,提供的回调也会被排队.回调会待在队列中,直到指定的时间用完后,
+    引擎开始执行动作(如果它在当前不执行其他的动作).因此,即时setTimeout()回调被延迟0毫秒,它任然会被排队,
+    并且直到函数中其他非延迟的语句被执行完了之后,才会执行.
+     */
+
+    //问题10:算法
+    //写一个isPrime()函数,当其质数时,返回true,否则返回false.
+    function isPrime(number){
+        if(typeof number !== 'number'||!Number.isInterger(number)){
+            return false;
+        }
+        if(number < 2){
+            return false;
+        }
+        if(number === 2){
+            return true;
+        }else if(number %2 === 0){
+            return false;
+        }
+        var squareRoot = Math.sqart(number);
+        for(var i=3; i<=squareRoot; i+=2){
+            if(number % i == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
