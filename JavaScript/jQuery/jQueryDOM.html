@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        div{border:2px solid blue;}
+        p{background: yellow;margin:4px;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="inner">Hello</div>
+    <div class="inner">Goodbye</div>
+</div>
+<p>Hello</p>
+<p>cruel</p>
+<p>World</p>
+
+<span>Span Text</span>
+<strong>What about me?</strong>
+<span>Another One</span>
+<script>
+    /*
+    DOM插入,包裹
+    .wrap()
+    .wrapAll()
+    .wrapInner()
+     */
+    //$(".inner").wrap("<div class='new' />")
+   /* $(".inner").wrap(function (){
+        return '<div class="'+$(this).text()+'"/>';
+    });
+    $("p").wrap("<div></div>");*/
+   /* $(".inner").wrapAll('<div class="new"></div>');
+    $("p").wrapAll("<div></div>");
+
+    $("span").wrapAll("<div><div><p><em><b></b></em></p></div></div>")
+    */
+
+    //$(".inner").wrapInner("<div class='new'></div>");
+    $(".inner").wrapInner(function(){
+        return '<div class="'+this.nodeValue+'"/>';
+    })
+</script>
+</body>
+</html>

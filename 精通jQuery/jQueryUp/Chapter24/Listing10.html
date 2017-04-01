@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        .draggable,#droppable{font-size:large;border:thin solid black;padding:4px;
+            width:5em;text-align:center;background-color:lightgray;margin:4px;}
+        #droppable{padding:20px;position:absolute;left:5px;bottom:5px;}
+    </style>
+    <script>
+        //指定可被接收的拖拽元素
+       $(document).ready(function(){
+           $(".draggable").draggable();
+           $("#droppable").droppable({
+               drop:function(event,ui){
+                   ui.draggable.text("Dropped");
+               },
+               activate:function(){
+                   $("#droppable").css({
+                       border:"medium double green",
+                       backgroundColor:"lightGreen"
+                   });
+               },
+               deactivate:function(){
+                   $("#droppable").css("border","").css("background-color","");
+               },
+               accept:"#drag1"
+           })
+       })
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div id="droppable">
+    Drag Here
+</div>
+<div id="drag1" class="draggable">
+    Drag 1
+</div>
+<div id="drag2" class="draggable">
+    Drag 2
+</div>
+</body>
+</html>

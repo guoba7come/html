@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        .draggable,.droppable{font-size:large;border:thin solid black;padding:4px;
+            width:5em;text-align:center;background-color:lightgray;margin:4px;}
+        .droppable{margin-bottom:10px;margin-right:5px;height:50px;width:120px;}
+        #dropContainer{position:absolute;right:5px;}
+        div span{position:relative;top:25%;}
+        .droppable.active{border:thick solid green;}
+        .droppable.hover{background-color:lightgreen;}
+    </style>
+    <script>
+        //droppable方法
+       /* droppable("destroy")
+        droppable("disable")
+        droppable("enable")
+        droppable("option")
+        */
+        $(document).ready(function(){
+            $("#apple").draggable({
+                scope:"fruit"
+            });
+            $("#orchid").draggable({
+                scope:"flower"
+            });
+            $("#flowerDrop").droppable({
+                activeClass:"active",
+                hoverClass:"hover",
+                scope:"flower"
+            });
+            $("#fruitDrop").droppable({
+                activeClass:"active",
+                hoverClass:"hover",
+                scope:"fruit"
+            })
+        })
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div id="dropContainer">
+    <div id="flowerDrop" class="droppable">
+        <span>Flowers</span>
+    </div>
+    <div id="fruitDrop" class="droppable">
+        <span>Touch</span>
+    </div>
+</div>
+<div class="draggable" id="orchid">
+    <span>Orchid</span>
+</div>
+<div id="apple" class="draggable">
+    <span>Apple</span>
+</div>
+</body>
+</html>

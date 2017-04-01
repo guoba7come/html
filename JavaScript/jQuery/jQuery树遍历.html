@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+
+<ul>
+    <li>list item 1</li>
+    <p>1111</p>
+    <li>list item 2</li>
+    <li class="third-item">list item 3</li>
+    <li>list item 4</li>
+    <p>111111</p>
+    <li>list item 5</li>
+</ul>
+-->
+<!--
+<ul id="one" class="level-1">
+    <li class="item-i">I</li>
+    <li id="ii" class="item-ii">II
+        <ul class="level-2">
+            <li class="item-a">A</li>
+            <li class="item-b">B
+                <ul class="level-3">
+                    <li class="item-1">1</li>
+                    <li class="item-2">2</li>
+                    <li class="item-3">3</li>
+                </ul>
+            </li>
+            <li class="item-c">C</li>
+        </ul>
+    </li>
+    <li class="item-iii">III</li>
+</ul>
+-->
+
+<!--<dl>
+    <dt id="term-1">term 1</dt>
+    <dd>definition 1-a</dd>
+    <dd>definition 1-b</dd>
+    <dd>definition 1-c</dd>
+    <dd>definition 1-d</dd>
+
+    <dt id="term-2">term 2</dt>
+    <dd>definition 2-a</dd>
+    <dd>definition 2-b</dd>
+    <dd>definition 2-c</dd>
+
+    <dt id="term-3">term 3</dt>
+    <dd>definition 3-a</dd>
+    <dd>definition 3-b</dd>
+</dl>
+-->
+<script>
+    //树遍历
+    /*
+    .addBack()
+    .children()
+    .closest()
+    .find() 得到当前匹配的元素集合中每个元素的后代
+    .next() 相邻元素(后面)
+    .nextAll() 后面的兄弟元素
+    .nextUntil()
+    .parent()
+    .parents()
+    .parentsUntil() 查找当前元素的所以前辈元素,直到遇到选择权,当不包括这些元素.
+    .prev()
+    .prevAll()
+    .prevUntil()    获取每个元素但不包括选择器
+    .siblings()
+     */
+
+    /*$('li.third-item').nextAll().addBack()
+            .css('background-color','red');
+
+    $('div.left,div.right').find('div,div>p').addClass('border');
+    $('div.before-addback').find('p').addClass('background');
+    $('div.after-addback').find('p').addBack().addClass('background');
+    */
+  /* $('ul').children().css('background-color','red');
+    $('ul').children(".third-item").css('background-color','orange');
+    */
+   // $('li.item-a').closest('ul').css('background-color','red');
+//    $('li.item-a').closest('li').css('background-color','red');
+  /*  var listItemII = document.getElementById('li');
+    $('li.item-a').closest('ul',listItemII).css('background-color','red');
+    $('li.item-a').closest('#one',listItemII).css('background-color','green');
+
+    var $listElements = $('li').css('color','blue');
+    $(document).bind('click',function(e){
+        $(e.target).closest($listElements).toggleClass('hilight');
+    });
+    */
+
+   /* $('li.item-ii').find('li').css('background-color','red');
+    var item1 = $('li.item-1')[0];
+    $('li.item-ii').find(item1).css('background-color','green');
+    */
+
+   /* $('li.third-item').next().css('background-color','red');
+    $('li.third-item').nextAll('li').css('background-color','orange');
+    */
+
+   /* $("#term-2").nextUntil("dt").css("background-color","red");
+    var term3 = document.getElementById("term-3");
+    $("#term-1").nextUntil(term3,"dd").css("color","green");*/
+
+   /* $('li.item-a').parent().css('background-color','red');
+    $('p').parent(".selected").css('background','yellow');
+    */
+
+    /*$('li.item-a').parents().css('background-color','red');
+    function showParents(){
+        $('div').css('border-color','white');
+        var len = $('span.selected').parents('div').css('border','2px red solid')
+                .length;
+        $('b').text('Unique div parents: '+len);
+
+    }
+    $('span').click(function(){
+        $(this).toggleClass('selected');
+        showParents();
+    });
+    */
+    //$('li.item-a').parentsUntil('.level-1').css('background-color','red');
+    //$('li.item-2').parentsUntil($('ul.level-1')).css('border','3px solid green');
+
+    /*$('li.third-item').prev().css('background-color','red');
+    $('li.third-item').prevAll().css('background-color','orange');
+    $('li.third-item').prevUntil('p').css('background-color','green');
+    */
+
+    $('li.third-item').siblings('p').css('background-color','green');
+</script>
+</body>
+</html>

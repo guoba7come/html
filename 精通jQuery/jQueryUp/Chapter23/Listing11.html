@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        input{width:150px;}
+    </style>
+    <script>
+        $(document).ready(function(){
+           $("input").tooltip();
+        });
+    </script>
+</head>
+<body class="ui-widget">
+<h1>jacqui's Flower Shop</h1>
+<div><label>Name:</label><input title="Use lastname,firstname"></div>
+<div><label>City:</label><input title="Don't include your state"/></div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+<script>
+    //浏览器事件
+    /*
+    .resize(handler(eventObject))   屏幕大小改变
+    .scroll()   屏幕滚动
+
+    文档加载
+    .holdReady()    暂停或恢复.ready()事件的执行
+    .ready()    当DOM准备就绪时,指定一个函数来执行
+
+    事件绑定
+    .bind(eventType[,eventData],handle(eventObject))     为一个元素绑定一个事件处理程序(jQuery3.0中已弃用,推荐使用.on()方法)
+    .delegate()
+    .off()
+    .on()
+    .one()
+    .trigger()
+    .triggerHandler()
+    .unbind()
+    .undelegate()
+
+    表单事件
+    .blur()
+    .change()
+    .focus()
+    .select()
+    .submit()
+
+    键盘事件
+    .keydown()
+    .keypress()
+    .keyup()
+
+    鼠标事件
+    .click()
+    .contextmenu()
+    .dblclick()
+    .focusin()
+    .focusout()
+    .hover()
+    .mousedown()
+    .mouseenter()
+    .mouseleave()
+    .mousemove()
+    .mouseout()
+    .mouseover()
+    .mouseup()
+
+    事件对象
+    event.currentTarget
+    event.data
+    event.isDefaultPrevented()
+    event.isImmediatePropagationStopped()
+    event.isPropagationStopped()
+    event.namespace
+    event.pageX
+    event.pageY
+    event.preventDefault()
+    event.relatedTarget
+    event.result
+    event.stopImmediatePropagation()
+    event.stopPropagation()
+    event.target
+    event.timeStamp
+    event.type
+    event.which
+     */
+
+    //当浏览器window的尺寸改变时,window元素上绑定的resize事件将被触发:
+    $(window).resize(function(){
+        $('#log').append('<div>Handler for .resize() called.</div>');
+        $('body').prepend('<div>'+$(window).width()+'</div>');
+    });
+    $('#target').scroll(function(){
+        $('#log').append('<div>Handler for .scroll() called.</div>');
+    });
+    $('#other').click(function(){
+        $('#target').scroll();
+    });
+
+    //延迟就绪事件,直到已加载的插件
+    $.holdReady(true);
+    $.getScript('myplugin.js',function(){
+        $.holdReady(false);
+    });
+
+    $(function(){
+
+    });
+    $(document).ready(function(){
+        $('p').text("11111");
+    });
+    $('#foo').bind('click',function(){
+        alert('User clicked on "foo."');
+    });
+    $('div.text').bind({
+        click:function(){
+            $(this).addClass("active");
+        },
+        mouseenter:function(){
+            $(this).addClass('inside');
+        },
+        mouseleave:function(){
+            $(this).removeClass('inside');
+        }
+    });
+</script>
+</body>
+</html>

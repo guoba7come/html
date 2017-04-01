@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        /*em{color:blue;font-weight:bold;}
+        div{color:red;}
+        span{color:red;}
+        b{
+            font-weight:bolder;}
+            */
+
+       /* p{margin:20px 0 0;}
+        b{color:blue;}
+        */
+
+        img{
+            padding: 10px;
+        }
+        div{color:red;font-size:24px;}
+    </style>
+</head>
+<body>
+   <!-- <p>
+        Once there was a <em title = "huge,gigantic">large</em>dinosaur...
+
+    </p>
+    The title of the emphasis is:<div></div>
+
+    <img id="greatphoto" src="brush-seller.jpg" alt="brush seller"/>
+
+    <div>Zero-th<span></span></div>
+    <div>First<span></span></div>
+    <div>Second<span></span></div>
+    -->
+
+   <!--<input type="checkbox" id="check1" checked="true">
+   <label for="check1">Check me</label>
+   <input type="checkbox" checked="checked" />
+   <input type="checkbox" />
+   <input  type="checkbox"/>
+   <input type="checkbox" checked="checked"/>
+   <p></p>
+   -->
+
+   <!--<button>Enable</button>
+   <input type="text" title="hello there"/>
+   <div>id="log"></div>
+   -->
+
+   <p></p>
+    <script>
+        /*
+        属性/css
+        .attr() 获取匹配的元素集合中的第一个元素的属性的值 或 设置每一个匹配元素的一个或多个属性
+        .attr(attributeName)
+        .attr(attributeName,value)
+        .attr(attributes)
+        .attr(attributeName,function(index,attr))
+        在jQuery 1.6中,当属性没有被设置时,.attr()方法将返回undefined.另外,.attr()不应该用在普通的对象,数组,窗口(window)或文件(document)上.
+        诺要检索和更改DOM属性,比如元素的checked,selected,或disabled状态,请使用.prop()方法.
+
+        .prop()
+        .prop(propertyName) 只获得第一个匹配元素的属性值.如果元素上没有该属性,或者如果没有匹配的元素.那么该方法会返回undefined.
+        .prop(propertyName,value)
+        .prop(properties)
+        .prop(propertyName,function(index,oldPropertyValue))
+        .removeAttr()
+        .removeProp()
+        .val()
+        */
+        /* 1.   .attr()
+        var title = $("em").attr("title");
+        $("div").text(title);
+
+        $("#greatphoto").attr('alt','Beijing Brush Seller');
+        $("#greatphoto").attr('title','Photo by Kelly Clark');
+        $("#greatphoto").attr({alt:'Beijing Brush Seller',title:'photo by kelly Clark'});
+
+        $("#greatphoto").attr('title',function(i,val){
+            return val + '- photo by Kelly Clark'
+        });
+
+        $("img").attr("src",function(){
+            return "/resources/"+this.title;
+        })
+
+        $("div").attr("id",function(arr){
+            console.log(arr);
+            return "div-id" +arr;
+        })
+                .each(function(){
+                    $("span",this).html("(ID = '<b>"+this.id+"</b>')");
+                });
+        $("div").removeAttr("id");
+        $("img").removeAttr("id").removeAttr("src").removeAttr("alt");
+        console.log($("img").attr("id"));
+        */
+
+        //2.    .prop()
+       /* $("input").change(function(){
+            var $input = $(this);
+            $("p").html(
+                    ".attr(\"checked\"):<b>"+$input.attr("checked")+"</b><br>"+
+                    ".prop(\"checked\"):<b>"+$input.prop("checked")+"</b><br>"+
+                    ".is(\":checked\"):<b>"+$input.is(":checked")+"</b>");
+
+        }).change();
+        console.log($("input").prop("checked"));
+        console.log($("input").prop("type"));
+        console.log($("input").attr("type"));
+
+        $("input").prop("disabled",false);
+        $("input").prop("checked",true);
+        $("input").val("someValue");
+
+        $("input[type='checkbox']").prop("checked",function(i,val){
+            console.log(i,val);//0 false
+            return !val;
+        });
+
+        $("input[type='checkbox']").prop({
+            disabled:true
+        });
+        */
+
+        //3.    .removeAttr()
+       /* (function(){
+            var inputTitle = $("input").attr("title");
+            $("button").click(function(){
+                var input = $(this).next();
+                if(input.attr("title")== inputTitle){
+                    input.removeAttr("title");
+                }else{
+                    input.attr("title",inputTitle);
+                }
+                $("#log").html("input title is now"+ input.attr("title"));
+            });
+        })();
+        */
+
+        //4.    .removeProp()
+      /*  para = $("p");
+        para.prop("luggageCode",1234)
+                .append("The secret luggage code is:",String(para.prop("luggageCode")),".")
+                .removeProp("luggageCode")
+                .append("Now the secret luggage code is: ",String(para.prop("luggageCode")),".");
+                */
+
+        //5.  .val()
+        $("select#foo option:checked").val();
+        $("select#foo").val();
+        $("input[type=checkbox][name=bar]:checked").val();
+        $("input[type=radio][name=baz]:checked").val();
+
+        $.valHooks.textarea={
+            get: function (elem) {
+                return elem.value.replace(/\r?\n/g,"\r\n");
+            }
+        };
+    </script>
+</body>
+</html>

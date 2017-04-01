@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        input{width:150px;}
+    </style>
+    <script>
+        //在HTML5 number类型的input元素上应用jQueryUI微调控制组件
+        $(document).ready(function(){
+            $("#entry").spinner();
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div class="ui-widget">
+    Enter value:<input id="entry" value="0" type="number"/>
+</div>
+</body>
+</html>

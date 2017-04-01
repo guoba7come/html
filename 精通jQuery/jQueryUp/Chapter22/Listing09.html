@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <script>
+        //创建模态窗口
+        $(document).ready(function(){
+            $("#dialog").dialog({
+                buttons:[{text:"OK",click:function(){$(this).dialog("close")}}],
+                modal:true,
+                autoOpen:false
+            });
+            $("#show").button().click(function(e){
+                e.preventDefault();
+                $("#dialog").dialog("open");
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<form action="post" action="http://node.jacquisflowershop.com/order">
+    <div id="dialog" title="Modal Dialog">
+        This is a modal dialog.Press OK to continue.
+    </div>
+    <button id="show">Show Dialog</button>
+</form>
+</body>
+</html>

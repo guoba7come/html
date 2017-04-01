@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        div.dragElement{font-size:x-large;border:thin solid black;
+            width:5em;text-align:center;background-color:lightgray;
+        margin:4px;}
+    </style>
+    <script>
+        //拖拽选项
+        /*axis
+        Containment
+        delay
+        distance
+        grid
+        */
+        //使用axis选项限制拖拽行为
+        $(document).ready(function(){
+            $(".dragElement").draggable({
+                axis:"x"
+            }).filter("#dragV").draggable("option","axis","y");
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div id="dragV" class="dragElement">
+    Drag Vertically
+</div>
+<div id="dragH" class="dragElement">
+    Drag Horizaontally
+</div>
+</body>
+</html>

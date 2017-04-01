@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        .ui-menu{width:200px;}
+    </style>
+    <script>
+        //子菜单的弹出位置
+        $(document).ready(function(){
+            $("#menu").menu({
+                icons:{submenu:"ui-icon-circle-plus"},
+                position:{
+                    my:"left center",
+                    at:"center center"
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<ul id="menu">
+    <li><a>Bouquets</a></li>
+    <li><a>Heirloom Blooms</a></li>
+    <li>-</li>
+    <li><a>Summer Color</a>
+        <ul>
+            <li><a>Aster</a></li>
+            <li><a>Rose</a></li>
+            <li><a>Orchid</a></li>
+        </ul></li>
+    <li><a><span class="ui-icon ui-icon-circle-check"></span>Wedding Classics</a></li>
+    <li>-</li>
+    <li class="ui-state-disabled"><a>Exotica</a></li>
+</ul>
+</body>
+</html>

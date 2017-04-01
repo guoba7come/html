@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/jquery-2.0.2.js"></script>
+		<script src="../js/jquery-ui-1.10.3.custom.js"></script>
+		<link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+		<link rel="stylesheet" href="../css/styles.css" />
+		<style>
+			#menu{width:200px;}
+		</style>
+		<script>
+			//创建菜单组件
+			$(document).ready(function(){
+				$("#menu").menu();
+			});
+		</script>
+	</head>
+	<body>
+		<h1>jacqui's Flower Shop</h1>
+		<ul id="menu">
+			<li><a>Bouquets</a></li>
+			<li><a>Heirloom Blooms</a></li>
+			<li><a>Summer Color</a>
+			<ul>
+				<li><a>Aster</a></li>
+				<li><a>Rose</a></li>
+				<li><a>Orchid</a></li>
+			</ul></li>
+			<li><a>Wedding Classics</a></li>
+			<li><a>Exotica</a></li>
+		</ul>
+	</body>
+</html>

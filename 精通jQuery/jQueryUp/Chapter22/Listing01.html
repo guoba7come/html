@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/jquery-2.0.2.js"></script>
+		<script src="../js/jquery-ui-1.10.3.custom.js"></script>
+		<link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+		<link rel="stylesheet" href="../css/styles.css" />
+
+		<script>
+			//使用jQuery UI生成对话框
+			$(document).ready(function(){
+				$("#dialog").dialog();
+			});
+		</script>
+	</head>
+	<body>
+		<h1>jacqui's Flower Shop</h1>
+		<form action="post" action="http://node.jacquisflowershop.com/order">
+			<div id="dialog" title="Dialog Box">
+				This is the content that will be displayed in the dialog box. THis <b>content</b>can be <em>styled</em>.
+			</div>
+		</form>
+	</body>
+</html>

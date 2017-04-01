@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        input{width:200px;text-align:left;margin-right:10px;}
+        #wrapper>* {float:left;}
+        #result{margin:auto;padding:10px;width:200px;clear:left;}
+    </style>
+    <script>
+        //日期拾取器方法
+        /*datepicker("destroy")
+        datepicker("disable")
+        datepicker("enable")
+        datepicker("option")
+        datepicker("isDisabled")
+        datepicker("hide")
+        datepicker("show")
+        datepicker("refresh")
+        datepicker("getDate")
+        datepicker("setDate",date)
+        */
+        //使用两个日期拾取器实现选取日期区间的功能
+        $(document).ready(function(){
+            $("#result").hide();
+            $("#dateStart,#dateEnd").datepicker({
+                minDate:"-7d",
+                maxDate:"+7d",
+                onSelect:function(date,datepicker){
+                    if(datepicker.id=="dateStart"){
+                        $("#dateEnd").datepicker("setDate",date)
+                                .datepicker("enable").datepicker("option","minDate",date)
+                    }
+                    if(!$("#dateEnd").datepicker("isDisabled")){
+                        var startDate = $("#dateStart").datepicker("getDate");
+                        var endDate = $("#dateEnd").datepicker("getDate");
+                        var diff = endDate.getDate() - startDate.getDate();
+                        $("#dayCount").text(diff).parent().show();
+                    }
+                }
+            }).filter("#dateEnd").datepicker("disable");
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<form action="post" action="http://node.jacquisflowershop.com/order">
+    <div id="wrapper" class="ui-widget">
+	<label for="dateStart">Start:</label><span id="dateStart"></span>
+    <label for="dateEnd">End:</label><span id="dateEnd"></span>
+    </div>
+    <div id="result" class="ui-widget">
+        Number of Days:<span id="dayCount"></span>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        span.toolTip{font-weight:bold;font-style:italic;}
+    </style>
+    <script id="tipContent" type="text/html">
+        We are at <b>200</b> main Street
+    </script>
+    <script>
+        //提示说明组件的配置选项
+        /*content
+        disabled
+        hide
+        items
+        position
+        show
+        tooltipClass
+        track
+        */
+        //利用content选项显示格式文本
+        $(document).ready(function(){
+            $("span.toolTip").tooltip({
+                content:$("#tipContent").html(),
+                items:"span.toolTip"
+            });
+        });
+    </script>
+</head>
+<body class="ui-widget">
+<h1>jacqui's Flower Shop</h1>
+<h3>Color and Beauty to Your Door</h3>
+<p>We are pleased to announce that we are starting a home delivery service for
+your flower needs.We will deliver within a <span class="toolTip">20 mile radius</span>
+of the store for free and $1/mile thereafter.</p>
+</body>
+</html>

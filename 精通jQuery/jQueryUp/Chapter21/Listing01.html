@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/jquery-2.0.2.js"></script>
+		<script src="../js/jquery-ui-1.10.3.custom.js"></script>
+		<link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+		<link rel="stylesheet" href="../css/styles.css" />
+		<style>
+			input{width:200px;text-align:left;}
+		</style>
+		<script>
+			//生成弹出式日期拾取器
+			$(document).ready(function(){
+				$("#datep").datepicker();
+			});
+		</script>
+	</head>
+	<body>
+		<h1>jacqui's Flower Shop</h1>
+		<form action="post" action="http://node.jacquisflowershop.com/order">
+			<div class="ui-widget>
+				<label for="datep">Date:</label><input id="datep"/>
+			</div>
+		</form>
+	</body>
+</html>

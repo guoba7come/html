@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        input{width:200px;text-align:left;margin-right:10px;}
+        #wrapper>* {float:left;}
+    </style>
+    <script>
+        //在弹出式日期拾取器上一次显示多个月份
+        $(document).ready(function(){
+            $("#datep").datepicker({
+                numberOfMonths:[1,3]
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<form action="post" action="http://node.jacquisflowershop.com/order">
+    <div id="wrapper" class="ui-widget>
+				<label for="datep">Date:</label>
+    <input id="datep"/>
+    <span id="inline"></span>
+    </div>
+</form>
+</body>
+</html>

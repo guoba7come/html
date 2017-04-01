@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        input{width:200px;text-align:left;margin-right:10px;}
+        #wrapper>* {float:left;}
+    </style>
+    <script>
+       //日期拾取器事件
+        /*create
+        onChangeMonthYear
+        onClose
+        onSelect
+        */
+        //使用onChangeMonthYear事件
+        $(document).ready(function(){
+            $("#dateStart,#dateEnd").datepicker({
+                onSelect:function(date,datepicker){
+                    if(datepicker.id == "dateStart"){
+                        $("#dateEnd").datepicker("setDate",date)
+                    }
+                },
+                onChangeMonthYear:function(year,month,datepicker){
+                    if(datepicker.id == "dateStart"){
+                        var newDate = new Date();
+                        newDate.setMonth(month -1);
+                        newDate.setYear(year);
+                        $("#dateEnd").datepicker("setDate",newDate);
+                    }
+                }
+            });
+        });
+
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<form action="post" action="http://node.jacquisflowershop.com/order">
+    <div id="wrapper" class="ui-widget">
+				<label for="dateStart">Start:</label>
+    <span id="dateSatrt"></span>
+        <lable for="dateEnd">End:</lable><sapn id="dateEnd"></sapn>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    ECMAScript6怎么写class,为何会出现class?;
+    ES6的class可以看作只是一个语法糖,他的绝大部分功能,ES5都可以做到,新的class写法只是让对象原型的写法更加清晰,更加面向对象编程的语法而已;
+    //定义类
+    class Point{
+        constructor(x,y){
+            //构造方法
+            this.x = x;//this关键字代表实例对象
+            this.y = y;
+
+        }toString(){
+        return '('+this.x+','+this.y+')';
+    }
+    }
+
+    异步加载js的方式有哪些;
+    (1)defer,只支持IE;
+    (2)async:  ;
+    (3)创建script,插入DOM中,加载完毕后callBack
+
+    document.write和innerHTML有何区别;
+    document.write 只能重绘整个页面    innerHTML  可以重绘页面的一部分
+
+    DOM操作--咋样添加,移除,移动,复制,创建和查找节点;
+    (1)创建新节点
+    createDocumentFragment()  //创建一个DOM片段
+    createElement()   //创建一个具体元素
+    createTextNode()  //创建一个文本节点
+    (2)添加,移动,替换,插入
+    appendChild()
+    removeChild()
+    replaceChild()
+    insertBefore() //在已有的子节点前插入一个新的子节点
+    (3)查找
+    getElememtsByTagName()  //通过标签名称
+    getElementsByName()    //通过name属性
+    getElementsByClassName()  //通过class
+    getElementById()   //通过id,为一性
+
+    那些操作会造成内存泄漏;
+    内存泄漏是指任何对象在您不在有或需要它之后任然存在;
+    垃圾回收器定期扫描对象,并计算引用了每个对象的其他对象的数量,如果一个对象的引用数量为0(没有其他对象引用过该对象);
+    或对该对象的唯一引用是循环的,那么该对象的内存即可回收;
+    setTimeout()的第一个参数使用字符串而非函数的话,会引发内存泄漏;
+    闭包,控制台日志,循环(在两个对象彼此引用且彼此保留时,就会产生一个循环)
+
+    jQuery中如何将数组转化为json字符串,然后再转化回来;
+    $.fn.stringifyArray = function(array){
+        return JSON.stringify(array);
+    }
+    $.fn.parseArray = function(array){
+        return JSON.parse(array);
+    }
+    //然后调用:
+    $("").stringifyArray(array);
+
+    jQuery.extend与jQuery.fn.extend有和区别;
+    jQuery.extend(object);//为jQuery类添加类方法,可以理解为添加静态方法
+    jQuery.extend({
+        min:function(a,b){return a<b?a:b;},
+        max:function(a,b){return a>b?a:b;}
+    });
+    jQuery.min(2,3);//2
+    jQuery.max(4,5);//5
+    jQuery.extend(target,object1,[objectN])用一个或多个其他对象来扩展一个对象,返回被扩展的对象;
+    jQuery.fn.extend(object);//对jQuery.prototype进行的扩展,就是为jQuery类添加"成员函数".
+    //jQuery类的实例可以使用这个"成员函数"
+    //比如我们要开发一个插件,做一个特殊的编辑框,当它被点击时,便alert,当前编辑框里的内容.可以这么做:
+    $.fn.extend({
+        alertWhileClick:function(){
+            $(this).click(function(){
+                alert($(this).val());
+            });
+        }
+    });
+    $("#input1").alertWhileClick();//页面上为$("#input1")为一个jQuery实例,当它调用成员方法
+    //alertWhileClick后,便实现了扩展,每次被点击时他会先弹出目前编辑里的内容
+
+    是否了解针对jQuery性能的优化方法;
+    基于class的选择性的性能相对于id选择器开销很多,因为需遍历所有DOM元素;
+    //基于频繁操作的DOM,先缓存起来再操作,用jQuery的链式调用更好;
+    var str = $("a").attr("href");
+    for(var i-size;i<arr.length;i++){}
+    for循环每一次循环都查找了数组(arr)的length属性,在开始循环的时候设置一个变量来存储这个数字,可以让循环跑的更快;
+    for(var i=size,length = arr.length;i<length;i++){}
+
+    jQuery与jQuery UI有何区别;
+    jQuery是一个js库,主要提供的功能是选择器,属性修改和事件绑定等等;
+    jQuery UI则是在jQuery的基础上,利用jQuery的扩展性,设计的插件,提供了一些常用的界面元素,诸如对话框,拖动行为,改变大小行为等等
+
+    如何判断当前脚本运行在浏览器还是node环境中;
+    通过判断Global对象是否为window,如果不为window,当前脚本没有运行在浏览器中
+
+    咋样用js实现千位分隔符;
+    正则+replace;
+    function commafy(num){
+        num = mum + '';
+        var reg = /(-?d+)(d{3})/;
+        if(reg.test(num)){
+            num = num.replace(reg,'$1,$2');
+        }
+        return num;
+    }
+
+    检查浏览器版本有哪些方式;
+    功能检测,userAgent特性检测
+    navigator.userAgent;
+
+    Canvas和SVG的比较:
+    Canvas:位图技术,可以保持为.png   善于表现颜色和线条细节   网页游戏,统计图  一个标签(canvas)+一个对象(getcontext),所有图形图像都靠ctx绘制;
+            不能被搜素引擎爬虫所访问  只能为整个Canvas绑定监听函数
+    SVG:  矢量图技术,不能保存为位图  可以缩放,不善于编写细节  图标,统计图,地图  几十个标签---每个图形对应一个标签   可以  每个图形(标签)可以绑定事件监听函数
+
+
+    MVC:模型(Model):数据保存   视图(View):用户界面  控制器(controller):业务逻辑
+    (1)View 传递指令到controller  (2)controller完成业务逻辑后,要求Model改变状态  (3)Model将新的数据发送到View,用户得到反馈所有通信都是单向的;
+
+    MVVM:模型(model) 视图(view) 视图模型(viewModel)
+    (1)各部分间都是双向通信   (2)View于Model 不发生联系,都是通过ViewModel传递
+    (3)View非常薄,不部署任何业务逻辑,称为"被动视图"(Passive View),即没有任何主动性;而ViewModel非常厚,所有逻辑都部署在那里
+    采用双向绑定(data-binding):view的变动,自动反应在viewModel,反之亦然;
+
+    http协议的状态消息都有哪些?(如200,302对应的描述)国内外的JS牛人都知道哪些?;
+    "100":continue(继续)  初始的请求已经接受,客户应当继续发生请求的其余部分
+    "101":Switching Protocols(切换协议)  请求者已要求服务器切换协议,服务器已确认并准备切换
+    "200":OK(成功) 一切正常,对GET和POST请求的应答文档跟在后面
+    "201":Created(已创建) 服务器已经创建了文档,Location头给出了他的URL
+    "202":Accepted(已接受) 服务器一接受了请求,但尚未对其进行处理
+    "203":Non-Authoritative Information(非授权信息) 文档已经正常地返回,但一些应答头可能不正确,可能来自另一来源
+    "204":No content (无内容)未返回任何内容,浏览器应该继续显示原来的文档
+    "205":Reset Content(重置内容) 没有新的内容,但浏览器应该重置它所显示的内容.用来强制浏览器清除表单输入内容
+    "206":Partial Content(部分内容) 服务器成功处理了部分GET请求
+    "300":Multiple Chontent(多种选择)客户请求的文档可以在多个位置找到,这些位置已经返回的文档内列出.如果服务器要提出优先选择;
+    则应该在Location应答头指明;
+    "301":Moved Permanently(永久移动) 请求的网页已被永久移动到新位置.服务器返回此响应(作为GET或HEAD请求的响应)时,会自动将请求者转到新位置;
+    "302":Found(临时移动)
+    "303":See Other(查看其他位置)
+    "304":Not Modified(未修改) 自从上次请求后,请求的网页未被修改过.原来缓存的文档还可以继续使用,不会返回网页内容
+    "305":Use Proxy(使用代理)  只能使用代理访问请求的网页.如果服务器返回次响应,那么,服务器还会指明请求者应当使用的代理;
+    "307":Temporary Redirect(临时重定向) 和302(Found)相同;
+    "400":Bad Request(错误请求) 请求出现语法错误;
+    "401":Unauthorized(未授权)
+    "403":Forbidden(已禁止)  资源不可用
+    "404":Not Found(未找到) 无法找到指定位置的资源;
+    "405":Method Not Allowed(方法禁用) 请求方法禁用;
+    "406":Not Acceptable(不接受)指定的资源以及找到,但它的MIME类型和客户端在Accpt头中所指定的不兼容;
+    "407":Proxy Authentication Required(需要代理授权)
+    "408":Request Time-out(请求超时) 服务器等候请求超时;
+    "409":Conflict(冲突)通常和PUT请求有关.由于请求和资源的当前状态相冲突,因此请求不能成功;
+    "410":Gone(已删除)
+    "411":Length Required(需要有效长度)
+    "412":Precondition Failed(未满足前提条件)
+    "413":Request Entity TooLarge(请求实体过大) 请求实体过大
+    "414":Request-URI Too Large(请求的URI过长)
+    "415":Unsupported Media Type(不支持的媒体类型)
+    "416":Requested range not satisfiable(请求范围不符合要求)
+    "417":Expectation Failed(未满足期望值)
+    "500":Internal Server Error (服务器内部错误)
+    "501":Not Implemented(未实施)
+    "502":Bad Gateway(错误网关)
+    "503":Service Unavailable(服务器不可用)
+    "504":Gateway Time-out(网关超时)
+    "505":HTTP Version not supported(HTTP 版本不支持)
+
+    国内比较牛的人:淘宝网UED官方博客,灵玉,大成小胖,承玉,拔赤
+
+
+
+</script>
+</body>
+</html>

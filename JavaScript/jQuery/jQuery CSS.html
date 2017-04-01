@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+    <style>
+       /* p{margin:8px;font-size:16px;}
+        .selected{color:blue;}
+        .highlight{background-color: yellow;}
+
+        div{background:white;}
+        .red{background-color: red;}
+        .red.green{background-color: green;}
+        */
+
+        p{margin:4px;font-size:16px;font-weight: bolder;cursor:pointer;}
+        .blue{color:blue;}
+        .highlight{background-color: yellow;}
+    </style>
+</head>
+<body>
+   <!-- <p></p>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <p>Hello</p>
+    <p>and</p>
+    <p>Goodbye</p>
+-->
+   <!-- <div>This div should be white</div>
+    <div class="red">This div will be green because it now has the "green" and "red",
+    It would be red if the addClass function failed.</div>
+    <div>This div should be white</div>
+    <p>There are zero green divs</p>
+    -->
+
+   <p class="blue">Click to toggle</p>
+   <p class="blue highlight">highlight</p>
+   <p class="blue">on these</p>
+   <p class="blue">paragraphs</p>
+<script>
+    /*
+    .addClass()
+    .addClass(className)
+    .addClass(function(index,currentClass))
+
+    .css()
+    .css(propertyName)
+    .css(propertyNames)
+
+    jQuery.cssHooks
+    jQuery.cssNumber
+    jQuery.escapeSelector()
+    .hasClass()
+    .hasClass(className)
+
+    .removeClass()
+    .toggleClass()
+    .toggleClass(className)
+    .toggleClass(className,state)
+    .toggleClass(function,[,state])
+    */
+
+    /*$("p").addClass('myClass yourClass');
+    $("p").removeClass('myClass noClass').addClass('yourClass2');
+    $("ul li:last").addClass(function(index){
+        return "item-"+index;
+    });
+    */
+
+   /* $("p").last().addClass("selected");
+    $("div").addClass(function(index,currentClass){
+        var addedClass;
+        if(currentClass == "red"){
+            addedClass = "green";
+            $("p").text("There is one green div");
+        }
+        return addedClass;
+    });
+
+    var x = $("div:last").css(["color","background-color"]);
+    console.log(x);
+    $("div:last").css("color","green");
+    $("div").css("width",function(index){
+        console.log(index);
+        return index*50;
+    });*/
+
+   /* $("#mydiv").hasClass('foo');
+    $("#mydiv").hasClass('bar');
+    $("#mydiv").hasClass('quux');
+    */
+
+    $("p").click(function(){
+        $(this).toggleClass("highlight");
+    });
+
+    var count = 0;
+    $("p").each(function(){
+        var $thisParagraph = $(this);
+        var count =0;
+        $thisParagraph.click(function () {
+            count++;
+            $thisParagraph.find("span").text("clicks: "+count);
+            $thisParagraph.toggleClass("highlight",count %3 ===0);
+        })
+    })
+</script>
+</body>
+</html>

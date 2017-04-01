@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        .draggable,.droppable{font-size:large;border:thin solid black;padding:4px;
+            width:5em;text-align:center;background-color:lightgray;margin:4px;}
+        .droppable{margin-bottom:10px;margin-right:5px;height:50px;width:120px;}
+        #dropContainer{position:absolute;right:5px;}
+        div span{position:relative;top:25%;}
+        .droppable.active{border:thick solid green;}
+        .droppable.hover{background-color:lightgreen;}
+    </style>
+    <script>
+        //tolerance选项的取值
+        /*fit
+        intersect
+        pointer
+        touch
+        */
+        //修改拖拽元素的tolerance选项
+        $(document).ready(function(){
+            $(".draggable").draggable();
+            $("div.droppable").droppable({
+                drop:function(event,ui){
+                    ui.draggable.text("Dropped");
+                },
+                activeClass:"active",
+                hoverClass:"hover",
+                tolerance:"fit"
+            });
+            $("#touchDrop").droppable("option","tolerance","touch");
+        })
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div id="dropContainer">
+    <div id="fitDrop" class="droppable">
+        <span>Fit</span>
+    </div>
+    <div id="touchDrop" class="droppable">
+        <span>Touch</span>
+    </div>
+</div>
+<div class="draggable">
+    <span>Drag Me</span>
+</div>
+</body>
+</html>

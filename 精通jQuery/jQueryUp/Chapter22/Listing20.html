@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="../js/globalize.js"></script>
+    <script src="../js/globalize.cultures.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        input{width:150px;}
+    </style>
+    <script>
+        //应用numberFormat和cultrue属性
+        $(document).ready(function(){
+            $("#entry").spinner({
+                culture:"fr-FR",
+                numberFormat:"C"
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div class="ui-widget">
+    Entry value:<input id="entry" value="0"/>
+</div>
+</body>
+</html>

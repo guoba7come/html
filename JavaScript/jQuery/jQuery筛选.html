@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+<!--<ul>
+
+    <li><strong>list</strong>list item 1</li>
+    <li><strong>list</strong>list item <strong>2</strong>two <span>strong tags</span></li>
+    <li>list item 3
+        <ul>
+            <li>list item 3-a</li>
+            <li>list item 3-b</li>
+        </ul>
+    </li>
+    <li id="notli">list item 4</li>
+    <li>list item 5</li>
+    </ul>
+
+<p>woshishui?</p>
+-->
+    <!--<form action="" method="post">
+        <fieldset>
+            <div>
+                <label for="two">2</label>
+                <input type="checkbox" value="2" id="two" name="number[]">
+            </div>
+            <div>
+                <label for="four">4</label>
+                <input type="checkbox" value="4" id="four" name="number[]">
+            </div>
+            <div>
+                <label for="six">6</label>
+                <input type="checkbox" value="6" id="six" name="number[]">
+            </div>
+            <div>
+                <label for="eight">8</label>
+                <input type="checkbox" value="8" id="eight" name="number[]">
+            </div>
+        </fieldset>
+    </form>
+    -->
+<!--<p>Hello</p><span id="a">Hello Again</span>
+<ul>
+    <li>foo</li>
+    <li>bar</li>
+    <li>head</li>
+</ul>
+-->
+<ul class="first">
+    <li class="foo">list item 1</li>
+    <li>list item 2</li>
+    <li class="bar">list item 3</li>
+</ul>
+<ul class="second">
+    <li class="foo">list item 1</li>
+    <li>list item 2</li>
+    <li class="bar">list item 3</li>
+</ul>
+<script>
+    /*
+    筛选
+    .eq(index)  索引从0开始
+    .filter()   筛选元素集合中匹配表达式 或 通过传递函数测试的 那些元素集合
+    .first()
+    .has()      筛选匹配元素集合中的那些有相匹配的选择器或DOM元素的后代元素
+    .is()
+    .last()
+    .map()
+    .not()
+    .slice(start[,end]) 根据指导的下标范围,过滤匹配元素的集合,并产生一个新的jQuery对象
+
+    .add(selector)  创建一个新的jQuery对象,元素添加到匹配的元素集合中.
+    .contents() 这个方法不接受任何参数;获的匹配元素集合中每个元素的字元素
+    .each(function(index,Element))  遍历一个jQuery对象,为每个匹配元素执行一个函数
+    .end()  这个方法不接受任何参数  ; 终止在当前链的最新过滤操作,并返回匹配的元素的以前状态.
+     */
+//    $('li').eq(2).css('background-color','red');
+//    $('li').eq(-2).css('background-color','green');
+//
+//    $('li').filter(':even').css('background-color','orange');
+//    $('li').filter(':odd').css('background-color','red');
+//    $('li').filter(function (index) {
+//        return $('strong',this).length == 1;
+//    }).css('background-color','pink');
+
+   /* $('li').first().css('background-color','red');
+    $('li').last().css('background-color','green');
+
+    $('li').has('ul').css('background-color','lightpink');
+    console.log($('li').has('ul'));
+    console.log($('li').has('strong'));
+
+    $('ul').click(function(event){
+        var $target = $(event.target);
+        if($target.is('li')){
+            $target.css('background-color','yellow');
+        }
+    });
+    */
+//    $(':checkbox').map(function(){
+//        return this.id;
+//    }).get().join();
+
+   /* $('li').not(':even').css('background-color','orange');
+    $('li').not(document.getElementById('notli')).css('background-color','red');
+    $('p').not($('#selected')[0]);
+    $('p').not('#selected');
+    $('p').not($('div p.selected'));
+     */
+   /* $('li').slice(2).css('background-color','red');
+    $('li').slice(3,5).css('background-color','orange');
+    $('li').slice(0,1).wrapInner("<b></b>");
+    $('li').slice(0,2).wrapInner("<b></b>");
+    $('li').slice(-1).wrapInner("<b></b>");
+    */
+
+    //$('p').add('div').addClass('widget');
+    //var pdiv = $('p').add("div");
+
+    /*var collection = $("p");
+    collection = collection.add(document.getElementById('a'));
+    collection.css('background','yellow');
+    console.log($('p').contents());
+    console.log($('span').contents());
+
+    $('li').each(function(index){
+        console.log(index+" : "+$(this).text());
+    })
+    $('li').each(function(){
+        $(this).addClass("foo");
+    });
+    $('li').addClass('bar');*/
+
+    $('ul.first').find('.foo').css('background-color','red')
+            .end().find('.bar').css('background-color','green');
+
+    $('ul.first').find('.foo').css('background-color','red')
+            .end().find('.bar')
+            .css('background-color','green').end();
+
+    jQuery.fn.showTags = function(n){
+        var tags = this.map(function(){
+            return this.tagName;
+        })
+                .get().join(",");
+        $("b:eq("+n+")").text(tagse);
+        return this;
+    };
+    $('p').showTags(0).find('span').showTags(1).css('background','yellow').end()
+            .showTags(2).css('font-style','italic');
+</script>
+</body>
+</html>

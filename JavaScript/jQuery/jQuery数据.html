@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+    <style>
+        /*div{color:blue;}
+        span{color:red;}
+        */
+        div{margin:5px;background:yellow;}
+        button{marign:5px;font-size:14px;}
+        p{marign:5px;color:blue;}
+        span{color:red;}
+    </style>
+</head>
+<body>
+<div>The values stored were
+    <span></span>
+    and
+    <span></span>
+</div>
+
+<div>A div</div>
+<button>Get "blah" from the div</button>
+<button>Set "blah" to "hello"</button>
+<button>Set "blah" to 86</button>
+<button>Remove "blah" from the div</button>
+<p>The "blah" value of this div is<span>?</span></p>
+
+<p>Results:</p>
+
+<div class="container">
+    <div class="hello">Hello</div>
+    <div class="goodbye">Goodbye</div>
+</div>
+
+<b>Hello</b>
+<p>,how are you?</p>
+
+<div id="orig">
+    <div class="elem"><a href="">1</a></div>
+    <div class="elem"><a href="">2</a></div>
+    <div class="elem"><a href="">3</a></div>
+    <div class="elem"><a href="">4</a></div>
+    <div class="elem"><a href="">5</a></div>
+</div>
+<div id="copy"></div>
+<div id="copy-correct"></div>
+<script>
+    /*
+    jQuery.data()
+    jQuery.data(element,key,value)
+    jQuery.data(element,key);
+    jQuery.data(element)
+    .data()
+    jQuery.hasData(element) 一个用于进行检查数据的DOM元素
+    jQuery.removeData()
+    .removeData()
+
+    .clone([withDataAndEvents]) 创建一个匹配元素集合的深度拷贝副本
+     */
+
+   /* jQuery.data(document.body,'foo',52);
+    jQuery.data(document.body,'bar','test');
+
+    var div = $("div")[0];
+    jQuery.data(div,"test",{first:16,last:"pizza!"});
+    $("span:first").text(jQuery.data(div,"test").first);
+    $("span:last").text(jQuery.data(div,"test").last);
+    */
+    /*
+    $("div").data("test",{first:16,last:"pizzal!"});
+    $("span:first").text($("div").data("test").first);
+    $("span:last").text($("div").data("test").last);
+
+    */
+
+   /* $("button").click(function(e){
+        var value,div = $("div")[0];
+        switch ($("button").index(this)){
+            case 0:
+                value = jQuery.data(div,"blah");
+                break;
+            case 1:
+                jQuery.data(div,"blah","hello");
+                value = "Stored!";
+                break;
+            case 2:
+                jQuery.data(div,"blah",86);
+                value = "Stored!";
+                break;
+            case 3:
+                jQuery.removeData(div,"blah");
+                value = "Removed!";
+                break;
+        }
+        $("span").text(" "+value);
+    });
+    */
+
+    $("body").data("foo",52);
+    $("body").data("bar",{myType:"test",count:40});
+    $("body").data({baz:[1,2,3]});
+
+    $("body").data("foo");//52
+    $("body").data();//{foo:52,bar:{myType:"test",count:40}}
+
+    alert($("body").data('foo'));
+    alert($("body").data());
+
+    var $p = jQuery("p"),p = $p[0];
+    $p.append(jQuery.hasData(p)+" ");//false
+    $.data(p,"testing",123);
+    $p.append(jQuery.hasData(p)+" ");//true
+    $.removeData(p,"testing");
+    $p.append(jQuery.hasData(p)+" ");//false
+
+    $p.on("click",function(){});
+    $p.append(jQuery.hasData(p)+" ");
+
+    $p.off("click");
+    $p.append(jQuery.hasData(p)+" ");
+
+    var div = $("div")[0];
+    $("span:eq(0)").text(" "+$(div).data("test1"));
+    jQuery.data(div,"test1","VALUE-1");
+    jQuery.data(div,"test2","VALUE-2");
+    $("span:eq(1)").text(" "+jQuery.data(div,"test1"));
+    jQuery.remvoeData(div,"test1");
+    $("span:eq(2)").text(" "+jQuery.data(div,"test1"));
+    $("span:eq(3)").text(" "+jQuery.data(div,"test2"));
+
+    $("span:eq(0)").text(" "+$("div").data("test1"));
+    $("div").data("test1","VALUE-1");
+    $("div").data("test2","VALUE-2");
+    $("span:eq(1)").text(" "+$("div").data("test1"));
+    $("div").removeData("test1");
+    $("span:eq(2)").text(" "+$("div").data("test1"));
+    $("span:eq(3)").text(" "+$("div").data("test2"));
+
+    $(".hello").appendTo(".goodbye");
+    $("b").clone().prependTo("p");
+
+    $("#copy").append($('#orig .elem').clone().children("a").prepend('foo-')
+            .parent().clone());
+    $("#copy-correct").append($('#orig .elem').clone().children('a')
+            .prepend('bar-').end());
+</script>
+</body>
+</html>

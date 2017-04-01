@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+<h2>Greetings</h2>
+<div class="container">
+    <div class="inner">Hello</div>
+    <div class="inner">Goodbye</div>
+</div>
+<script>
+    /*
+    .append()   在每个匹配元素里面的末尾处插入参数内容
+    .append(content,[,content])
+    .append(function(index,html))
+
+    .appendTo(target) 将匹配的元素插入到目标元素的最后面
+
+    .html() 获取集合中第一个匹配元素的HTML内容 或 设置每一个匹配元素的内容
+    .html(htmlString)
+    .html(function(index,oldhtml))
+
+    .prepend()  将参数内容插入到每个匹元素的前面(元素内部)
+    .prependTo()    将所有元素插入到目标前面(元素内)
+    .text()
+     */
+    /*$('.inner').append('<p>Test</p>');
+
+    var $newdiv1 = $("<div id='object1'></div>"),
+            newdiv2 = document.createElement('div'),
+    existingdiv1 = document.getElementById("foo");
+    $('body').append($newdiv1,[newdiv2,existingdiv1]);
+    $('.container').append($('h2'));
+    */
+    /*$('<p>Test</p>').appendTo(".inner");
+    $('h2').appendTo($('.container'));
+    */
+
+   /* console.log($(".inner").html());
+    console.log($("div.container").html());
+    $(".inner").html("我是谁?");
+    $(".inner").html("<p>你好吗?</p>");
+    */
+
+   /* $(".inner").prepend("<p>Test</p>");
+    $(".container").prepend($("h2"),"<p>MyName</p>");
+    */
+
+  /*  $('<p>Test</p>').prependTo('.inner');
+    $('h2').prepend($('.container'));
+    */
+
+    console.log($('.inner').text());
+    console.log($('div').text());
+    $('.inner').text("你好吗");
+    $('.container').text("你谁啊");
+
+</script>
+</body>
+</html>

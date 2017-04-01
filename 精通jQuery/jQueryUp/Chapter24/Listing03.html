@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        div.dragElement{font-size:large;border:thin solid black;padding:4px;
+            width:5em;text-align:center;background-color:lightgray;margin:4px}
+        #container{border:medium double black;width:400px;height:150px;}
+    </style>
+    <script>
+        //使用containment选项
+        $(document).ready(function(){
+            $("#draggable").draggable({
+                containment:"parent"
+            }).filter("#dragH").draggable("option","axis","x");
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div id="container">
+    <div id="dragH" class="dragElement">
+        Drag Horizontally
+    </div>
+    <div class="dragElement">
+        Drag within Prarent
+    </div>
+</div>
+
+</body>
+</html>

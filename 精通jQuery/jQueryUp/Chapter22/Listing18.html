@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        input{width:150px;}
+    </style>
+    <script>
+
+        //改变微调组件所用图标
+        $(document).ready(function(){
+            $("#entry").spinner({
+                min:2,
+                max:100,
+                step:2,
+                page:5,
+                icons:{
+                    up:"ui-icon-circle-plus",
+                    down:"ui-icon-circle-minus",
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div class="ui-widget">
+    Entry value:<input id="entry" value="0"/>
+</div>
+</body>
+</html>

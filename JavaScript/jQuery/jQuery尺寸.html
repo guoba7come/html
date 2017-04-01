@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+<p>我是谁?</p>
+<script>
+
+    /*
+    .height()
+    .height()  返回一个没有单位的数值(例如,400)  元素的高度 element
+    .height(value)
+    .height(function(index,height))
+
+    .innerHeight()  element+padding
+    .innerWidth()
+    .outerHeight()  element+padding+border(默认:false)  element+padding+border+margin(true)
+    .outerWidth()
+    .width()
+     */
+
+   console.log($(window).height());
+   console.log($(document).height());
+    $('p').css("background-color","green");
+    $('p').css("width","200px");
+    $('p').attr("title","hello world");
+    $('p').addClass("name word");
+    $('p').removeClass("name");
+    console.log($('p').prop("title"));
+    $('p').width("400");
+    $('p').height("40");
+    $('p').css("padding","20px");
+    console.log($('p').innerWidth());//440
+    $('p').innerWidth("500");
+    console.log($('p').innerHeight());
+</script>
+</body>
+</html>

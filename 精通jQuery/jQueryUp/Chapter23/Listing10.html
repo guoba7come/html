@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <style>
+        [title]{font-weight:bold;font-style:italic;}
+    </style>
+    <script>
+        $(document).ready(function(){
+            $("[title]").tooltip();
+        })
+    </script>
+</head>
+<body class="ui-widget">
+<h1>jacqui's Flower Shop</h1>
+<h3>Color and Beauty to Your Door</h3>
+<p>We are pleased to announce that we are starting a home delivery service for
+your flower needs.We will deliver within a <span title="We are at 200 Main St">20 mile radius</span>
+of the store for free and $1/mile thereafter.</p>
+</body>
+</html>

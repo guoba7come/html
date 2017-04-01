@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <script>
+        //对话框组件方法
+       /*dialog("destroy")
+        dialog("option")
+        dialog("close")
+        dialog("isOpen")
+        dialog("moveToTop")
+        dialog("open")
+        */
+        //使用对话框组件方法
+        $(document).ready(function(){
+            $("#d1,#d2").dialog({
+                autoOpen:false,
+            });
+            $("#t1,#t2").button().click(function(e){
+                var target = this.id=="t1"?"#d1":"#d2";
+                if($(target).dialog("isOpen")){
+                    $(target).dialog("close");
+                }else{
+                    $(target).dialog("open");
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div id="d1" class="dialog" title="First Dialog" class="ui-widget">
+    This is the first dialog
+</div>
+<div id="d2" class="dialog" title="Second Dialog" class="ui-widget">
+    This is the second dialog
+</div>
+<div>
+    <button id="t1">Toggle Dialog 1</button>
+</div>
+<button id="t2">Toggle Dialog 2</button>
+</body>
+</html>

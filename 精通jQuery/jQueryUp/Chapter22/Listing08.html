@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-2.0.2.js"></script>
+    <script src="../js/jquery-ui-1.10.3.custom.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <script>
+        //使用draggable选项
+        $(document).ready(function(){
+            $(".dialog").dialog({
+                draggable:true
+            });
+        });
+    </script>
+</head>
+<body>
+<h1>jacqui's Flower Shop</h1>
+<div id="d1" class="dialog" title="First Dialog">
+    This is the first dialog
+</div>
+<div id="d2" class="dialog" title="Second Dialog">
+    This is the second dialog
+</div>
+<div id="d3" class="dialog" title="Third Dialog">
+    This is the third dialog
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.min.js">
+    </script>
+    <style>
+        div.demo{
+            background:#CCC none repeat scroll 0 0;
+            border:3px solid #666;
+            marign:5px;
+            padding:5px;
+            position:relative;
+            width:200px;
+            height:100px;
+            overflow:auto;
+        }
+        p{margin:10px;
+            padding:5px;
+            border:2px solid #666;
+            width:1000px;
+            height:1000px;
+        }
+    </style>
+</head>
+<body>
+<p>我的p标签位置</p>
+<ul class="level-1">
+    <li class="item-i">I</li>
+    <li class="item-ii" style="position: relative;">II
+        <ul class="level-2">
+            <li class="item-a">A</li>
+            <li class="item-b">B
+                <ul class="level-3">
+                    <li class="item-1">1</li>
+                    <li class="item-2">2</li>
+                    <li class="item-3">3</li>
+                </ul>
+            </li>
+            <li class="item-c">C</li>
+        </ul>
+
+    </li>
+    <li class="item-iii">III</li>
+</ul>
+<div class="demo">
+    <h1>lalala</h1>
+    <p>Hello</p>
+</div>
+<script>
+    /*
+    .offset()
+    .offset()   获取位置(相对于document的坐标)
+    .offset(coordinates)    设置位置
+    .offset(function(index,coords))
+
+    .offsetParent() 这个方法不接收任何参数  定位到position:absolute,relative,fixed
+
+    .position() 获取相对于父级元素的位置 不接收参数
+
+    .scrollLeft()   获取匹配的元素中第一个元素的当前水平滚动条的位置
+    .scrollLeft(value)
+    .scrollTop()
+    .scrollTop(value)
+     */
+
+    console.log( $('p').offset() );  //Object{top:16,left:8}
+    console.log($('p').offset().left);//8
+    $('p').offset({top:8,left:20})
+
+    console.log($('p').offsetParent()); //[html, prevObject: m.fn.init[1], context: document]
+    $("li.item-a").offsetParent().css('background-color','red');
+
+   console.log( $("li.item-a").position() );//Object {top: 18, left: 40}
+
+    $("div.demo").scrollLeft(300);
+    $("div.demo").scrollTop(400);
+
+</script>
+</body>
+</html>
